@@ -23,15 +23,11 @@ def get_flow_file(flow_name):
 
 def get_headers(headers):
     """By default headers are folded by mitmproxy."""
-    headers_dict = {}
-    for key, val in headers.items():
-        headers_dict[key] = val
-    return headers_dict
+    return dict(headers.items())
 
 
 def get_flow_meta(flow):
-    flow_meta = {}
-    flow_meta['id'] = flow.id
+    flow_meta = {'id': flow.id}
     # Request
     content = flow.request.content.decode(
         'utf-8', 'ignore') if flow.request.content else ''
